@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'; 
 import './App.css';
+import Calendar from './components/Calendar';
+import Notes from './components/Notes';
 
 function App() {
+  const times = []; 
+  const [notes, setNotes] = useState([]);  
+
+  const handleNoteAdded = (newNote) => {
+    setNotes([...notes, newNote]);       
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="page-container">
+        <div className="left-side">
+          <Calendar times={times} />
+        </div>
+        <div className="right-side">
+          <Notes add={notes} onNoteAdded={handleNoteAdded} />
+        </div>
+      </div>
     </div>
   );
 }

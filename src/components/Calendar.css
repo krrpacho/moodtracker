@@ -1,0 +1,50 @@
+.calendar-container {
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+  }
+  
+  .event-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .event-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .delete-icon {
+    cursor: pointer;
+    color: rgb(10, 10, 10); 
+  }
+  
+  :root {
+    --fc-border-color: rgb(190, 190, 190);
+  }
+  
+  .fc .fc-toolbar-title,
+  .fc .fc-daygrid-day-number,
+  .fc .fc-col-header-cell-cushion,
+  .fc .fc-daygrid-day-top {
+    color: rgb(255, 255, 255) !important;
+  }
+  
+  .fc .fc-daygrid-day {
+    border: 1px solid var(--fc-border-color);
+  }
+  
+  
+  @media screen and (max-width: 540px) {
+    .view {
+        width: 20px;
+    }
+  }
+  
+  @media screen and (min-width: 540px) and (max-width: 780px) {
+    .view {
+        width: 20px;
+    }
+  }
+  
