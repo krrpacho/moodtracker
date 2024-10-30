@@ -1,27 +1,23 @@
 import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import './Calendar.css';
 
-const Calendar = ({ times = [], onTimeDeleted }) => { 
+const Calendar = ({ times = [], onDateSelect }) => { 
+  const events = times;
 
-  const events = times; 
-
-  const renderEventContent = (eventInfo) => {
-    return (
-      <div>
-        <strong>{eventInfo.event.title}</strong>
-      </div>
-    );
+  const handleDateClick = (arg) => {
+    onDateSelect(arg.dateStr); 
   };
 
   return (
     <div className="calendar-container">
       <FullCalendar
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         events={events}
-        eventContent={renderEventContent}
+        dateClick={handleDateClick}
         eventDisplay="block"
       />
     </div>

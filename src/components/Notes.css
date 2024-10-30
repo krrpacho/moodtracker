@@ -4,6 +4,7 @@
     width: 400px;
     height: 600px;
     margin: 20px auto;
+    position: relative;
 }
 
 .notes-header {
@@ -11,12 +12,12 @@
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px; /* Adds space between buttons and text box */
+    margin-bottom: 20px;
 }
 
 .emoji-picker-toggle {
     padding: 8px;
-    background-color: #acacac;
+    background-color: #333768;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
@@ -28,11 +29,12 @@
     position: absolute;
     top: 35px;
     right: 80px;
-    background-color: #fff;
+    background-color: #c0c0c0;
     border: 1px solid #b8b8b8;
     border-radius: 5px;
     padding: 5px;
 }
+
 
 .emoji-picker button {
     background: none;
@@ -43,13 +45,13 @@
 }
 
 .emoji-selected {
-    background-color: #e0e0e0;
+    background-color: #333768;
     border-radius: 5px;
 }
 
 button {
     padding: 8px 12px;
-    background-color: #acacac;
+    background-color: #333768;
     color: white;
     border: none;
     border-radius: 5px;
@@ -59,7 +61,7 @@ button {
 }
 
 button:hover {
-    background-color: #929292;
+    background-color: #333768;
 }
 
 textarea {
@@ -73,4 +75,17 @@ textarea {
     color: #333;
     resize: vertical;
     outline: none;
+}
+
+.date-display {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    background-color: #3e437d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 1;
 }

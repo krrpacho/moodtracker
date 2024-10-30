@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Notes.css';
 
-const Notes = ({ add = [], onNoteAdded }) => {
+const Notes = ({ add = [], onNoteAdded, selectedDate }) => {
     const [note, setNote] = useState('');
     const [selectedEmoji, setSelectedEmoji] = useState('');
     const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
@@ -18,8 +18,9 @@ const Notes = ({ add = [], onNoteAdded }) => {
 
     return (
         <div className="notes-container">
+            <div className="date-display">{selectedDate}</div> 
             <div className="notes-header">
-                <button 
+                <button
                     onClick={() => setEmojiPickerVisible(!emojiPickerVisible)}
                     className="emoji-picker-toggle"
                 >
@@ -28,11 +29,11 @@ const Notes = ({ add = [], onNoteAdded }) => {
                 {emojiPickerVisible && (
                     <div className="emoji-picker">
                         {emojis.map((emoji, index) => (
-                            <button 
-                                key={index} 
+                            <button
+                                key={index}
                                 onClick={() => {
                                     setSelectedEmoji(emoji);
-                                    setEmojiPickerVisible(false); 
+                                    setEmojiPickerVisible(false);
                                 }}
                                 className={selectedEmoji === emoji ? "emoji-selected" : ""}
                             >
