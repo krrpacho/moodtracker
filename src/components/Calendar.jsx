@@ -4,12 +4,24 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import './Calendar.css';
 
-const Calendar = ({ times = [], onDateSelect }) => { 
-  const events = times;
+const Calendar = ({ entries, onDateSelect }) => { 
+  const events = Object.keys(entries).map(date => ({
+    title: entries[date].emoji,
+    date: date,
+  }));
 
   const handleDateClick = (arg) => {
-    onDateSelect(arg.dateStr); 
+    onDateSelect(arg.dateStr);
   };
+
+  const renderEventContent = (eventInfo) => (
+    <div
+      onClick={() => handleDateClick({ dateStr: eventInfo.event.startStr })}
+      style={{ cursor: 'pointer' }}
+    >
+      <strong>{eventInfo.event.title}</strong>
+    </div>
+  );
 
   return (
     <div className="calendar-container">
@@ -18,6 +30,7 @@ const Calendar = ({ times = [], onDateSelect }) => {
         initialView="dayGridMonth"
         events={events}
         dateClick={handleDateClick}
+        eventContent={renderEventContent}
         eventDisplay="block"
       />
     </div>

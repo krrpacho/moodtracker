@@ -1,14 +1,21 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Calendar from './components/Calendar';
 import Notes from './components/Notes';
 
 function App() {
-  const [notes, setNotes] = useState([]);  
+  const [entries, setEntries] = useState({});
   const [selectedDate, setSelectedDate] = useState('');
 
-  const handleNoteAdded = (newNote) => {
-    setNotes([...notes, { date: selectedDate, note: newNote }]); 
+  useEffect(() => {
+    const savedEntries = JSON.parse(localStorage.getItem('moodTrackerEntries')) || {};
+    setEntries(savedEntries);
+  }, []);
+
+  const handleNoteAdded = (newNote, date) => {
+    const updatedEntries = { ...entries, [date]: newNote };
+    setEntries(updatedEntries);
+    localStorage.setItem('moodTrackerEntries', JSON.stringify(updatedEntries));
   };
 
   const handleDateSelect = (date) => {
@@ -19,10 +26,14 @@ function App() {
     <div className="App">
       <div className="page-container">
         <div className="left-side">
-          <Calendar times={notes} onDateSelect={handleDateSelect} />
+          <Calendar entries={entries} onDateSelect={handleDateSelect} />
         </div>
         <div className="right-side">
-          <Notes add={notes} onNoteAdded={handleNoteAdded} selectedDate={selectedDate} />
+          <Notes
+            onNoteAdded={handleNoteAdded}
+            selectedDate={selectedDate}
+            selectedEntry={entries[selectedDate] || { emoji: '', note: '' }}
+          />
         </div>
       </div>
     </div>
